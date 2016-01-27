@@ -10,10 +10,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Photo.h"
+#import "CollectionViewCell.h"
 
 @interface CollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSMutableArray *photoSet;
+@property (nonatomic, strong) NSMutableArray *socialArray;
 
 
 @end

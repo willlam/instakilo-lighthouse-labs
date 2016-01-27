@@ -25,20 +25,27 @@ static NSString * const reuseIdentifier = @"photocell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
 	
+	self.photoSet = [[NSMutableArray alloc] init];
+	self.socialArray = [[NSMutableArray alloc] init];
+	
 	Photo *photo1 = [[Photo alloc] initWithName:@"Burning Man Decomp" location:@"Toronto" category:@"Social" image:@"burningman.jpg"];
 	Photo *photo2 = [[Photo alloc] initWithName:@"Camp Reset" location:@"Mono, ON" category:@"Social" image:@"camp reset.jpg"];
 	Photo *photo3 = [[Photo alloc] initWithName:@"Gabriel" location:@"Shopify, TO" category:@"Frands" image:@"Gabrieljpg"];
 	Photo *photo4 = [[Photo alloc] initWithName:@"Coffee and patisserie" location:@"Duo Patisserie" category:@"Noms" image:@"Duo.jpg"];
 	Photo *photo5 = [[Photo alloc] initWithName:@"Milo the Havanese Dog" location:@"North York" category:@"Dogs" image:@"Milo1.jpg"];
-	Photo *photo6 = [[Photo alloc] initWithName:@"Autumn" location:@"Mainstreet Unionville" category:@"Trees" image:@"autumn.jpg"];
+	Photo *photo6 = [[Photo alloc] initWithName:@"Autumn" location:@"Mainstreet Unionville" category:@"Social" image:@"autumn.jpg"];
 	Photo *photo7 = [[Photo alloc] initWithName:@"Me chillin" location:@"Cuba" category:@"Moi" image:@"me chillin.jpg"];
 	Photo *photo8 = [[Photo alloc] initWithName:@"Me chillin..again" location:@"Cuba" category:@"Moi" image:@"me chillin2.jpg"];
 	Photo *photo9 = [[Photo alloc] initWithName:@"Me" location:@"Toronto" category:@"Moi" image:@"will lam.jpg"];
 	Photo *photo10 = [[Photo alloc] initWithName:@"Y Combinator" location:@"ycombinator.com" category:@"startups" image:@"y.jpeg"];
 	
+	[self.photoSet addObjectsFromArray:@[photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10]];
+	[self.socialArray addObjectsFromArray:@[photo1, photo2, photo6]];
+	
+	
 	
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
 }
@@ -61,22 +68,40 @@ static NSString * const reuseIdentifier = @"photocell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+//#warning Incomplete implementation, return the number of sections
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+//#warning Incomplete implementation, return the number of items
+	NSLog(@"%@", @(self.photoSet.count));
+	return self.photoSet.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+	
+	CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
-    
+	Photo *photo = self.photoSet[indexPath.row];
+	
+	
+	cell.imageView.image = photo.image;
+	
+	
     return cell;
+	
+	
+//	Todo *currentTodo = self.todoObjects[indexPath.row];
+//	
+//	cell.todoTitle.text = currentTodo.title;
+//	cell.todoDescription.text = currentTodo.todoDescription;
+//	
+//	//  putting the raw int value of currentTodo.priority into literal notation to create an object and setting the property to string value so it can evaluate propertly.
+//	cell.todoPriority.text = @(currentTodo.priority).stringValue;
+//	
+//	
+//	return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
