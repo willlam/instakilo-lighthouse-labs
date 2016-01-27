@@ -1,0 +1,19 @@
+//
+//  CollectionViewController.h
+//  instakilo
+//
+//  Created by William Lam on 2016-01-27.
+//  Copyright © 2016 William Lam. All rights reserved.
+//
+
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "Photo.h"
+
+@interface CollectionViewController : UICollectionViewController
+
+@property (nonatomic, strong) UIImage *image;
+
+
+@end
